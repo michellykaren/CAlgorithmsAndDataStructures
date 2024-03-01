@@ -51,6 +51,20 @@ void pop(Stack *s){
   }
 }
 
+void display(Stack *s){
+    //walking through the stack
+    printf("-------------------\n");
+    printf("-------STACK-------\n");
+    printf("-------------------\n");
+    
+    for(int i=0; i<SIZE; i++){
+        printf("%d \t %d", i, s->stack[i]);
+        if(s->top==i) printf("*\n");
+        else printf("\n");
+    }
+    printf("-------------------\n");
+}
+
 int main() {
   Stack s;
   init(&s);
@@ -75,7 +89,7 @@ int main() {
           pop(&s);
           break;
       case 3:
-          //display();
+          display(&s);
           break;
       case 4:
           exit(0);    //exit() termina imediatamente a execução do prograda. 
@@ -92,16 +106,4 @@ int main() {
 
 
 
-/*void display(){
-    //walking through the stack
-    printf("-------------------\n");
-    printf("-------STACK-------\n");
-    printf("-------------------\n");
-    
-    for(int i=0; i<SIZE; i++){
-        printf("%d \t %d", i, stack[i]);
-        if(top==i) printf("*\n");
-        else printf("\n");
-    }
-    printf("-------------------\n");
-}*/
+
