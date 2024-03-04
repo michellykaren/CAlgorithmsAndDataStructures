@@ -44,46 +44,36 @@ Node* createNode(int item){
 
 Node* insertNode(Node* p, int item) {
     // Se a árvore está vazia, cria um novo nó e retorna como raiz
-    if (p == NULL) {
-        return createNode(item);
-    }
-
-    // Caso contrário, desce pela árvore recursivamente até encontrar a posição correta
-    if (item < p->data) { // Insere na subárvore esquerda
-        p->left = insertNode(p->left, item);
-    } else if (item > p->data) {
-        // Insere na subárvore direita
-        p->right = insertNode(p->right, item);
-    }
-
-    // Retorna o ponteiro para o nó (raiz) após a inserção
-    return p;
+    if (p == NULL) return createNode(item);
+    if (item < p->data) p->left = insertNode(p->left, item); // Caso contrário, desce pela árvore recursivamente até encontrar a posição correta
+    else if (item > p->data) p->right = insertNode(p->right, item);
+    return p; // Retorna o ponteiro para o nó (raiz) após a inserção
 }
 
 // Inorder: Esquerda -> Raiz -> Direita
-void inorderTraversal(Node* root) {
-    if (root != NULL) {
-        inorderTraversal(root->left);
-        printf("%d ", root->data);
-        inorderTraversal(root->right);
+void inorderTraversal(Node* p) {
+    if (p != NULL) {
+        inorderTraversal(p->left);
+        printf("%d ", p->data);
+        inorderTraversal(p->right);
     }
 }
 
 // Preorder: Raiz -> Esquerda -> Direita
-void preorderTraversal(Node* root) {
-    if (root != NULL) {
-        printf("%d ", root->data);
-        preorderTraversal(root->left);
-        preorderTraversal(root->right);
+void preorderTraversal(Node* p) {
+    if (p != NULL) {
+        printf("%d ", p->data);
+        preorderTraversal(p->left);
+        preorderTraversal(p->right);
     }
 }
 
 // Postorder: Esquerda -> Direita -> Raiz
-void postorderTraversal(Node* root) {
-    if (root != NULL) {
-        postorderTraversal(root->left);
-        postorderTraversal(root->right);
-        printf("%d ", root->data);
+void postorderTraversal(Node* p) {
+    if (p != NULL) {
+        postorderTraversal(p->left);
+        postorderTraversal(p->right);
+        printf("%d ", p->data);
     }
 }
 
